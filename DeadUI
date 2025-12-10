@@ -1,0 +1,172 @@
+local ASH = {}
+
+local function randomString()
+    local length = math.random(10, 20)
+    local array = {}
+    for i = 1, length do
+        array[i] = string.char(math.random(32, 126))
+    end
+    return table.concat(array)
+end
+
+local runtimeItems = workspace:WaitForChild("RuntimeItems")
+local bondName = "Bond"
+local bondCollected = 0
+
+-- ScreenGui : BondGui
+ASH["0"] = Instance.new("ScreenGui", game:GetService("CoreGui"));
+ASH["0"]["Name"] = randomString();
+ASH["0"]["AutoLocalize"] = true;
+ASH["0"]["ResetOnSpawn"] = true;
+ASH["0"]["IgnoreGuiInset"] = true;
+ASH["0"]["Enabled"] = true;
+ASH["0"]["Archivable"] = true;
+
+-- Frame : BondInfo
+ASH["1"] = Instance.new("Frame", ASH["0"]);
+ASH["1"]["Name"] = [[BondInfo]];
+ASH["1"]["Active"] = false;
+ASH["1"]["AnchorPoint"] = Vector2.new(0, 0.5);
+ASH["1"]["AutoLocalize"] = true;
+ASH["1"]["AutomaticSize"] = Enum.AutomaticSize.None;
+ASH["1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+ASH["1"]["BackgroundTransparency"] = 1.0;
+ASH["1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+ASH["1"]["BorderMode"] = Enum.BorderMode.Outline;
+ASH["1"]["BorderSizePixel"] = 0.000000;
+ASH["1"]["ClipsDescendants"] = false;
+ASH["1"]["LayoutOrder"] = 0.000000;
+ASH["1"]["Position"] = UDim2.new(0.009999999776482582, 0, 0.5929999947547913, 0);
+ASH["1"]["Rotation"] = 0.000000;
+ASH["1"]["Selectable"] = false;
+ASH["1"]["Size"] = UDim2.new(0.09912531822919846, 0, 0.07140340656042099, 0);
+ASH["1"]["SizeConstraint"] = Enum.SizeConstraint.RelativeXY;
+ASH["1"]["Style"] = Enum.FrameStyle.Custom;
+ASH["1"]["Visible"] = true;
+ASH["1"]["ZIndex"] = 1.000000;
+ASH["1"]["Draggable"] = false;
+ASH["1"]["Transparency"] = 1.0;
+ASH["1"]["Archivable"] = true;
+
+-- UIListLayout : UIListLayout
+ASH["2"] = Instance.new("UIListLayout", ASH["1"]);
+ASH["2"]["Name"] = [[UIListLayout]];
+ASH["2"]["Archivable"] = true;
+ASH["2"]["Padding"] = UDim.new(0.10000000149011612, 0);
+ASH["2"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Left;
+ASH["2"]["VerticalAlignment"] = Enum.VerticalAlignment.Top;
+ASH["2"]["FillDirection"] = Enum.FillDirection.Horizontal;
+ASH["2"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+-- ImageLabel : BondIcon
+ASH["3"] = Instance.new("ImageLabel", ASH["1"]);
+ASH["3"]["Name"] = [[BondIcon]];
+ASH["3"]["Active"] = false;
+ASH["3"]["AnchorPoint"] = Vector2.new(0, 0);
+ASH["3"]["AutoLocalize"] = true;
+ASH["3"]["AutomaticSize"] = Enum.AutomaticSize.None;
+ASH["3"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+ASH["3"]["BackgroundTransparency"] = 1.0;
+ASH["3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+ASH["3"]["BorderMode"] = Enum.BorderMode.Outline;
+ASH["3"]["BorderSizePixel"] = 0.000000;
+ASH["3"]["ClipsDescendants"] = false;
+ASH["3"]["LayoutOrder"] = 0.000000;
+ASH["3"]["Position"] = UDim2.new(0, 0, 0, 0);
+ASH["3"]["Rotation"] = 0.000000;
+ASH["3"]["Selectable"] = false;
+ASH["3"]["Size"] = UDim2.new(1, 0, 1, 0);
+ASH["3"]["SizeConstraint"] = Enum.SizeConstraint.RelativeXY;
+ASH["3"]["Visible"] = true;
+ASH["3"]["ZIndex"] = 0.000000;
+ASH["3"]["Image"] = [[rbxassetid://73580081637476]];
+ASH["3"]["ImageColor3"] = Color3.fromRGB(255, 255, 255);
+ASH["3"]["ImageRectOffset"] = Vector2.new(0, 0);
+ASH["3"]["ImageRectSize"] = Vector2.new(0, 0);
+ASH["3"]["ImageTransparency"] = 0;
+ASH["3"]["ScaleType"] = Enum.ScaleType.Stretch;
+ASH["3"]["SliceCenter"] = Rect.new(0, 0, 0, 0);
+ASH["3"]["SliceScale"] = 1.000000;
+ASH["3"]["Draggable"] = false;
+ASH["3"]["Transparency"] = 1.0;
+ASH["3"]["Archivable"] = true;
+
+-- UIAspectRatioConstraint : UIAspectRatioConstraint
+ASH["4"] = Instance.new("UIAspectRatioConstraint", ASH["3"]);
+ASH["4"]["Name"] = [[UIAspectRatioConstraint]];
+ASH["4"]["AspectRatio"] = 1.960000;
+ASH["4"]["AspectType"] = Enum.AspectType.FitWithinMaxSize;
+ASH["4"]["DominantAxis"] = Enum.DominantAxis.Width;
+ASH["4"]["Archivable"] = true;
+
+-- UIStroke : UIStroke
+ASH["5"] = Instance.new("UIStroke", ASH["3"]);
+ASH["5"]["Name"] = [[UIStroke]];
+ASH["5"]["Enabled"] = true;
+ASH["5"]["Thickness"] = 2.000000;
+ASH["5"]["Color"] = Color3.fromRGB(0, 0, 0);
+ASH["5"]["Transparency"] = 0;
+ASH["5"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Contextual;
+ASH["5"]["LineJoinMode"] = Enum.LineJoinMode.Round;
+ASH["5"]["Archivable"] = true;
+
+-- TextLabel : BondCount
+ASH["6"] = Instance.new("TextLabel", ASH["1"]);
+ASH["6"]["Name"] = [[BondCount]];
+ASH["6"]["Active"] = false;
+ASH["6"]["AnchorPoint"] = Vector2.new(0, 0);
+ASH["6"]["AutoLocalize"] = true;
+ASH["6"]["AutomaticSize"] = Enum.AutomaticSize.None;
+ASH["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+ASH["6"]["BackgroundTransparency"] = 1.0;
+ASH["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+ASH["6"]["BorderMode"] = Enum.BorderMode.Outline;
+ASH["6"]["BorderSizePixel"] = 0.000000;
+ASH["6"]["ClipsDescendants"] = false;
+ASH["6"]["LayoutOrder"] = 0.000000;
+ASH["6"]["Position"] = UDim2.new(0.6087412238121033, 0, 0.31149762868881226, 0);
+ASH["6"]["Rotation"] = 0.000000;
+ASH["6"]["Selectable"] = false;
+ASH["6"]["Size"] = UDim2.new(0.3386804759502411, 0, 0.9999999403953552, 0);
+ASH["6"]["SizeConstraint"] = Enum.SizeConstraint.RelativeXY;
+ASH["6"]["Visible"] = true;
+ASH["6"]["ZIndex"] = 1.000000;
+ASH["6"]["Text"] = tostring(bondCollected);
+ASH["6"]["TextColor3"] = Color3.fromRGB(255, 121, 103);
+ASH["6"]["TextScaled"] = true;
+ASH["6"]["TextSize"] = 14.000000;
+ASH["6"]["TextStrokeColor3"] = Color3.fromRGB(0, 0, 0);
+ASH["6"]["TextStrokeTransparency"] = 1.0;
+ASH["6"]["TextTransparency"] = 0;
+ASH["6"]["TextTruncate"] = Enum.TextTruncate.None;
+ASH["6"]["TextWrapped"] = true;
+ASH["6"]["TextXAlignment"] = Enum.TextXAlignment.Center;
+ASH["6"]["TextYAlignment"] = Enum.TextYAlignment.Center;
+ASH["6"]["Draggable"] = false;
+ASH["6"]["FontFace"] = Font.new("rbxassetid://12187372175", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+ASH["6"]["Archivable"] = true;
+
+-- UIStroke : UIStroke
+ASH["7"] = Instance.new("UIStroke", ASH["6"]);
+ASH["7"]["Name"] = [[UIStroke]];
+ASH["7"]["Enabled"] = true;
+ASH["7"]["Thickness"] = 2.000000;
+ASH["7"]["Color"] = Color3.fromRGB(0, 0, 0);
+ASH["7"]["Transparency"] = 0;
+ASH["7"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Contextual;
+ASH["7"]["LineJoinMode"] = Enum.LineJoinMode.Round;
+ASH["7"]["Archivable"] = true;
+
+
+runtimeItems.ChildRemoved:Connect(function(child)
+    if child.Name == bondName and typeof(child) == "Instance" and child.ClassName == "Model" then
+        bondCollected += 1
+        getgenv().bondCollected = bondCollected
+
+        ASH["6"].Text = "+" .. tostring(bondCollected)
+    end
+end)
+
+
+
+return ASH["0"], require;
