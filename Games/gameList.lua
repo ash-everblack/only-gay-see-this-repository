@@ -12,6 +12,7 @@ local games = {
   ["2753915549"] = "BloxFruits",
   ["7449423635"] = "BloxFruits",
   ["126884695634066"] = "GrowAGarden",
+  ["136599248168660"] = "sl"
 }
 
 return games
